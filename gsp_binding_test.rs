@@ -9,7 +9,7 @@ use r570_144 as fw;
 module! {
     type: GspBindingTest,
     name: "GspBindings",
-    author: "Alistair Popple",
+    authors: ["Alistair Popple"],
     description: "GSP Binding Generation Stub Module",
     license: "GPL v2",
     firmware: [],
