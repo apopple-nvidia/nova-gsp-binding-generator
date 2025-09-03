@@ -3,6 +3,7 @@
 #include <vgpu/rpc_global_enums.h>
 #include <gpu/gsp/gsp_static_config.h>
 #include <gpu/gsp/gsp_init_args.h>
+#include <generated/g_rpc-message-header.h>
 #include <gpu/gsp/gsp_fw_heap.h>
 #include <gsp/gsp_fw_wpr_meta.h>
 #include <libos_init_args.h>
