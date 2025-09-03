@@ -32,3 +32,5 @@ type:GspSystemInfo
 type:rpc_run_cpu_sequencer_v17_00
 type:GSP_SEQUENCER_BUFFER_CMD
 type:GspStaticConfigInfo_t
+type:msgqTxHeader
+type:msgqRxHeader

@@ -7,6 +7,7 @@
 #include <gsp/gsp_fw_wpr_meta.h>
 #include <libos_init_args.h>
 #include <generated/g_os_nvoc.h>
+#include <msgq/msgq_priv.h>
 
 #define RPC_STRUCTURES
 #include <generated/g_rpc-structures.h>
