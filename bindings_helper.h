@@ -19,6 +19,11 @@
 #define NV_FORCERESULTCHECK
 #define NV_ATTRIBUTE_UNUSED
 
+#define RPC_MESSAGE_STRUCTURES
+
+/* Avoid pulling the world when generating some rpc_message_header_v */
+#define rpc_generic_union u8
+
 #define NvU8 u8
 #define NvS8 s8
 #define NvV8 u8
