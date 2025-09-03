@@ -29,3 +29,5 @@ type:GSP_SR_INIT_ARGUMENTS
 type:PACKED_REGISTRY_TABLE
 var:REGISTRY_TABLE_ENTRY_TYPE_DWORD
 type:GspSystemInfo
+type:msgqTxHeader
+type:msgqRxHeader

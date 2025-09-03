@@ -103,6 +103,7 @@ bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/nvidia/interface
 bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/common/nvlink/inband/interface
 bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/common/inc/swref/published
 bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/common/inc/swref
+bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/common/shared/msgq/inc
 bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/common/uproc/os/common/include
 bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/nvidia
 bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/nvidia/arch/nvalloc/unix/include
