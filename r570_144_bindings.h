@@ -9,6 +9,8 @@
 #include <libos_init_args.h>
 #include <generated/g_os_nvoc.h>
 #include <msgq/msgq_priv.h>
+#include <gpu/gsp/message_queue.h>
+#include <gpu/gsp/message_queue_priv.h>
 
 #define RPC_STRUCTURES
 #include <generated/g_rpc-structures.h>
