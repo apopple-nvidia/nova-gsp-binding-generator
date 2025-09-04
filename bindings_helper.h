@@ -72,3 +72,6 @@
 #define NV_U64_MAX      (+18446744073709551615ULL)
 
 #define NVCPU_X86_64
+
+#define NvU64_HI32(x) x
+#define NvU64_LO32(x) x
