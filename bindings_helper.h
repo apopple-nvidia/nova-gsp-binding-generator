@@ -19,6 +19,11 @@
 #define NV_FORCERESULTCHECK
 #define NV_ATTRIBUTE_UNUSED
 
+#define RPC_MESSAGE_STRUCTURES
+
+/* Avoid pulling the world when generating some rpc_message_header_v */
+#define rpc_generic_union u8
+
 #define NvU8 u8
 #define NvS8 s8
 #define NvV8 u8
@@ -67,3 +72,6 @@
 #define NV_U64_MAX      (+18446744073709551615ULL)
 
 #define NVCPU_X86_64
+
+#define NvU64_HI32(x) x
+#define NvU64_LO32(x) x
