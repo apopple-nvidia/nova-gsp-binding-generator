@@ -26,4 +26,5 @@
 
 #[allow(clippy::undocumented_unsafe_blocks)]
 use kernel::ffi;
+use pin_init::MaybeZeroable;
 include!("r570_144_bindings.rs");
