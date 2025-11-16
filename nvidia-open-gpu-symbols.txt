@@ -36,3 +36,4 @@ var:NV_VGPU_MSG_SIGNATURE_VALID
 type:GSP_MSG_QUEUE_ELEMENT
 type:GspStaticConfigInfo_t
 type:rpc_run_cpu_sequencer_v17_00
+type:GSP_SEQUENCER_BUFFER_CMD
