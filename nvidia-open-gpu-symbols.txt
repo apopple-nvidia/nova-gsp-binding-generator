@@ -34,3 +34,4 @@ type:msgqRxHeader
 type:rpc_message_header_v
 var:NV_VGPU_MSG_SIGNATURE_VALID
 type:GSP_MSG_QUEUE_ELEMENT
+type:GspStaticConfigInfo_t
