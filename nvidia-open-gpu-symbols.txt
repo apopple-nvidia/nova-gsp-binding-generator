@@ -35,3 +35,4 @@ type:rpc_message_header_v
 var:NV_VGPU_MSG_SIGNATURE_VALID
 type:GSP_MSG_QUEUE_ELEMENT
 type:GspStaticConfigInfo_t
+type:rpc_run_cpu_sequencer_v17_00
