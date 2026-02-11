@@ -138,9 +138,9 @@ $(OPEN_GPU_KERNEL_VERSION)_bindings.rs: private bindgen_target_flags += \
         $(if $(filter type:%,$(item)),--allowlist-type=$(patsubst type:%,%,$(item)),\
         $(if $(filter var:%,$(item)),--allowlist-var=$(patsubst var:%,%,$(item)))))
 
-# Strip the bindgen version comment in the output to keep diffs clean
+# Replace the bindgen version comment with an SPDX license header
 $(OPEN_GPU_KERNEL_VERSION)_bindings.rs: private bindgen_target_extra = ; \
-	sed -Eni '3,$$p' $@
+	sed -Ei '1s|^/\*.*\*/$$|// SPDX-License-Identifier: GPL-2.0|' $@
 
 gsp_binding_test.o: $(OPEN_GPU_KERNEL_VERSION)_bindings.rs
 obj-m := gsp_binding_test.o
