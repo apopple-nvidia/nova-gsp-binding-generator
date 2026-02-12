@@ -34,6 +34,9 @@ type:msgqRxHeader
 type:rpc_message_header_v
 var:NV_VGPU_MSG_SIGNATURE_VALID
 type:GSP_MSG_QUEUE_ELEMENT
+type:GspStaticConfigInfo_t
 type:rpc_run_cpu_sequencer_v17_00
 type:GSP_SEQUENCER_BUFFER_CMD
-type:GspStaticConfigInfo_t
+type:rpc_unloading_guest_driver_v1F_07
+type:rpc_gsp_rm_alloc_v03_00
+type:rpc_gsp_rm_control_v03_00
