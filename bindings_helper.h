@@ -79,3 +79,6 @@
 
 #define NvU64_HI32(x) x
 #define NvU64_LO32(x) x
+
+#define RMCFG_FEATURE_ENABLED(x) 0
+#define NVCFG(x) 0
