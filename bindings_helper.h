@@ -71,6 +71,10 @@
 #define NV_U64_MIN      (0ULL)
 #define NV_U64_MAX      (+18446744073709551615ULL)
 
+/* Stripped to empty — bindgen only needs struct layout, not atomic semantics */
+#define PORT_ATOMIC
+
+#define NvU64_ALIGN32 u64
 #define NVCPU_X86_64
 
 #define NvU64_HI32(x) x
