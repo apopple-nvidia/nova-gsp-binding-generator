@@ -90,7 +90,7 @@ quiet_cmd_bindgen = BINDGEN $@
 ifdef NVIDIA_OPEN_GPU_KERNEL_PATH
 
 include $(NVIDIA_OPEN_GPU_KERNEL_PATH)/version.mk
-OPEN_GPU_KERNEL_VERSION := r$(subst .,_,$(NVIDIA_VERSION))
+OPEN_GPU_KERNEL_VERSION ?= r$(subst .,_,$(NVIDIA_VERSION))
 
 bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/nvidia/inc/kernel
 bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/nvidia/generated
