@@ -16,3 +16,7 @@
 #include <generated/g_rpc-structures.h>
 #include <rmgspseq.h>
 #include <ctrl/ctrl2080/ctrl2080internal.h>
+
+/* IFR header format constants */
+#include <turing/tu102/dev_bus.h>
+
