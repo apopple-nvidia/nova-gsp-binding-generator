@@ -83,6 +83,10 @@ quiet_cmd_bindgen = BINDGEN $@
       cmd_bindgen = \
 	$(BINDGEN) $< $(bindgen_target_flags) --rust-target 1.68 \
 		--use-core --with-derive-default --ctypes-prefix ffi --no-layout-tests \
+		--with-derive-custom-struct .*=FromBytes --with-derive-custom-union .*=FromBytes \
+		--with-derive-custom-struct .*=Immutable --with-derive-custom-union .*=Immutable \
+		--with-derive-custom-struct .*=KnownLayout --with-derive-custom-union .*=KnownLayout \
+		--with-derive-custom-struct .*=IntoBytes --with-derive-custom-union .*=IntoBytes \
 		--enable-function-attribute-detection --explicit-padding \
 		-o $@ -- $(bindgen_c_flags_final) -DMODULE \
 		$(bindgen_target_cflags) $(bindgen_target_extra)
@@ -139,9 +143,17 @@ $(OPEN_GPU_KERNEL_VERSION)_bindings.rs: private bindgen_target_flags += \
         $(if $(filter var:%,$(item)),--allowlist-var=$(patsubst var:%,%,$(item)))))
 
 # Replace the bindgen version comment with an SPDX license header
+# Derive FromBytes, etc for the __IncompleteArray type
+# Replace the generic __IncompleteArrayField<PACKED_REGISTRY_ENTRY> with a
+# monomorphics version. See r570_144.rs for details.
 $(OPEN_GPU_KERNEL_VERSION)_bindings.rs: private bindgen_target_extra = ; \
-	sed -Ei '1s|^/\*.*\*/$$|// SPDX-License-Identifier: GPL-2.0|' $@
+	sed -Ei \
+	-e '1s|^/\*.*\*/$$|// SPDX-License-Identifier: GPL-2.0|' \
+	-e '4s|.*|#[derive(Default, FromBytes, IntoBytes, Immutable, KnownLayout)]|' \
+	-e 's|__IncompleteArrayField<PACKED_REGISTRY_ENTRY>|__IncompletePackedRegistryEntry|' \
+	$@
 
+RUSTFLAGS_gsp_binding_test.o += --cfg zerocopy_derive_union_into_bytes
 gsp_binding_test.o: $(OPEN_GPU_KERNEL_VERSION)_bindings.rs
 obj-m := gsp_binding_test.o
 
