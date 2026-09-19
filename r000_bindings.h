@@ -11,6 +11,8 @@
 #include <msgq/msgq_priv.h>
 #include <gpu/gsp/message_queue.h>
 #include <gpu/gsp/message_queue_priv.h>
+#include <gmcapi/gmcapi_base.h>
+#include <arch/nvalloc/common/inc/gsp/gspifpub.h>
 
 #define RPC_STRUCTURES
 #include <generated/g_rpc-structures.h>

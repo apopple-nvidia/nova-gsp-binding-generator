@@ -12,6 +12,13 @@
 #define NV_ALIGN_BYTES(a) __attribute__ ((__aligned__(a)))
 #define NV_DECLARE_ALIGNED(f,a) f __attribute__ ((__aligned__(a)))
 
+/*
+ * Marks a type whose layout is part of the GSP ABI. Normally comes from
+ * nvtypes.h, which we suppress above, and it expands to an attribute clang
+ * does not know in any case.
+ */
+#define NV_ABI_STABLE
+
 /* We don't care about functions so this shouldn't make a difference */
 #define NV_INLINE
 #define NV_FORCEINLINE
@@ -73,6 +80,14 @@
 
 /* Stripped to empty — bindgen only needs struct layout, not atomic semantics */
 #define PORT_ATOMIC
+
+/*
+ * The generated NVOC headers call this even though PORT_MODULE_time is off, so
+ * nvport/time.h never declares it. Clang treats an implicit declaration as an
+ * error from C99 on. Declared here rather than enabling the port time module,
+ * which would pull in far more than bindgen needs.
+ */
+NvU64 portTimeGetUptimeNanoseconds(void);
 
 #define NvU64_ALIGN32 u64
 #define NVCPU_X86_64
