@@ -43,6 +43,8 @@
 #define NvU64 u64
 #define NvS64 s64
 #define NvV64 u64
+#define NvF32 float
+#define NvF64 double
 #define NvP64 void*
 #define NvBool u8
 #define NvUPtr u64
