@@ -91,6 +91,7 @@ ifdef NVIDIA_OPEN_GPU_KERNEL_PATH
 
 include $(NVIDIA_OPEN_GPU_KERNEL_PATH)/version.mk
 OPEN_GPU_KERNEL_VERSION ?= r$(subst .,_,$(NVIDIA_VERSION))
+export OPEN_GPU_KERNEL_VERSION
 
 bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/nvidia/inc/kernel
 bindgen_c_flags_final += -I$(NVIDIA_OPEN_GPU_KERNEL_PATH)/src/nvidia/generated
@@ -142,7 +143,19 @@ $(OPEN_GPU_KERNEL_VERSION)_bindings.rs: private bindgen_target_flags += \
 $(OPEN_GPU_KERNEL_VERSION)_bindings.rs: private bindgen_target_extra = ; \
 	sed -Ei '1s|^/\*.*\*/$$|// SPDX-License-Identifier: GPL-2.0|' $@
 
-gsp_binding_test.o: $(OPEN_GPU_KERNEL_VERSION)_bindings.rs
+# Generate the vGPU ABI separately from the base GSP bindings.
+$(OPEN_GPU_KERNEL_VERSION)_vgpu_bindings.rs: $(OPEN_GPU_KERNEL_VERSION)_vgpu_bindings.h $(srctree)/rust/bindgen_parameters FORCE
+	$(call if_changed_dep,bindgen)
+$(OPEN_GPU_KERNEL_VERSION)_vgpu_bindings.rs: private bindgen_target_flags = \
+    $(shell grep -Ev '^#|^$$' $(srctree)/rust/bindgen_parameters)
+$(OPEN_GPU_KERNEL_VERSION)_vgpu_bindings.rs: private bindgen_target_flags += \
+    $(foreach item,$(shell cat $(src)/nvidia-vgpu-symbols.txt),\
+        $(if $(filter type:%,$(item)),--allowlist-type=$(patsubst type:%,%,$(item)),\
+        $(if $(filter var:%,$(item)),--allowlist-var=$(patsubst var:%,%,$(item)))))
+$(OPEN_GPU_KERNEL_VERSION)_vgpu_bindings.rs: private bindgen_target_extra = ; \
+	sed -Ei '1s|^/\*.*\*/$$|// SPDX-License-Identifier: GPL-2.0|' $@
+
+gsp_binding_test.o: $(OPEN_GPU_KERNEL_VERSION)_bindings.rs $(OPEN_GPU_KERNEL_VERSION)_vgpu_bindings.rs
 obj-m := gsp_binding_test.o
 
 else

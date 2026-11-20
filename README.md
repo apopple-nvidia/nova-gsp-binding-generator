@@ -10,3 +10,6 @@ The result for use with nova-core will be in `<OPEN_GPU_KERNEL_MODULES_VERSION>_
 # Generating new bindings
 The symbols for which bindings are generated is controlled by the nvidia-open-gpu-symbols.txt file. This is a simple list of symbols to generate bindings for.
 Note that the correct header files from open-gpu-kernel-modules will likely need to be included by updating `<OPEN_GPU_KERNEL_MODULES_VERSION>_bindings.h`
+
+For vGPU bindings, add symbols to `nvidia-vgpu-symbols.txt` and include the required headers in `<OPEN_GPU_KERNEL_VERSION>_vgpu_bindings.h`.
+For r000, use `r000_vgpu_bindings.h`. The build generates `<OPEN_GPU_KERNEL_VERSION>_vgpu_bindings.rs` alongside the base bindings.

@@ -3,8 +3,8 @@
 //! Stub module to build GSP bindings
 use kernel::prelude::*;
 
-mod r570_144;
-use r570_144 as fw;
+mod gsp_bindings;
+use gsp_bindings as fw;
 
 module! {
     type: GspBindingTest,
